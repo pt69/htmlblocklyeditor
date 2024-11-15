@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="HTML-Blockly-Editor">
+
+    <title>HTML-Blockly-Editor</title>
+
+    <link rel="shortcut icon" href="./favicon.ico"/>
+    <link href="./lib/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="./lib/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="./lib/prism/prism.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <script src="./lib/jquery/jquery.min.js"></script>
+    <script src="./lib/bootstrap/v5/js/bootstrap.min.js"></script>
+    <script src="./lib/prism/prism.js"></script>  
+    <script src="./lib/lz-string/lz-string.js"></script> 
+    <script src="./lib/split/split.min.js"></script>    
+    <script src="./lib/blockly/blockly_compressed.js" defer></script>
+    <script src="./lib/blockly/msg/js/de.js" defer></script>
+    <script src="./js/html_blocks.js" defer></script>
+    <script src="./js/html_generators.js" defer></script>  
+    <script src="./js/htmlblockly.js" defer></script>
+    <script src="./js/helper.js" defer></script>
+    
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light pt-1" style="background-color: #38424D;">
+  <div class="container-fluid">
+    <form class="d-flex">
+        <div class="navbar-brand" style="color: #f8f9fa;">HTML-Blockly-Editor</div>
+    </form>
+    <form class="d-flex">
+      <div class="btn-group btn-group-sm" role="group" aria-label="navi1">
+        <button id="HTMLAnzeigen" type="button" class="btn btn-outline-light " data-bs-toggle="modal" data-bs-target="#HTMLModal">
+          <i class="bi bi-code-square"></i>&nbsp;&nbsp;HTML-Quellcode
+        </button>           
+      </div>
+    </form>    
+    <form class="d-flex">
+      <div class="btn-group btn-group-sm" role="group" aria-label="navi2">          
+        <button id="InfoAnzeigen" type="button" class="btn btn-outline-light btn-sm" data-bs-toggle="modal" data-bs-target="#InfoModal">
+          <i class="bi bi-info-circle"></i>
+        </button>        
+      </div>
+    </form>
+  </div>
+</nav>
+
+<!-- Preview-Editor -->
+<div style="width: 100%; padding-left: 5px;">
+    <div class="split">
+        <div id="split-0">
+          <div id="blocklyArea">  
+            <div id="blocklyDiv"></div>
+          </div>
+        </div>  
+        <div id="split-1">
+          <div style="margin-top: 10px; padding-left: 8px; padding-right: 8px;">
+              <div id="title">Webseite</div>
+              <div id="websiteFrame"><iframe id="website"></iframe></div>
+          </div> 
+        </div>
+    </div>
+</div>
+
+
+<!-- Footer -->
+<nav class="navbar navbar-expand-lg navbar-light pt-2" style="background-color: #38424D;">
+  <div class="container-fluid">
+    <form class="d-flex">
+      <div class="input-group input-group-sm">
+        <input id="HTMLsaveDateiname" type="text" class="form-control" aria-label="Dateiname" aria-describedby="HTMLSave">
+        <button id="HTMLSave" class="btn btn-outline-light" type="button"><i class="bi bi-download"></i> Speichern</button>
+      </div>
+    </form>
+    <form class="d-flex">
+      <div class="input-group input-group-sm">
+        <label class="btn btn-outline-light btn-sm">
+          <i class="bi bi-upload"></i> Programm laden <input type="file" accept=".xml" id="HTMLDateiwahl" hidden>
+        </label>
+      </div>
+    </form>
+    <form class="d-flex">
+      <div class="btn-group btn-group-sm" role="group" aria-label="encode1">
+        <button id="URLSave" class="btn btn-outline-light btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#URLModal"><i class="bi bi-file-zip"></i> LZ-Codierung</button>
+      </div>
+    </form> 		    
+  </div>
+</nav>
+
+<!-- Modal-URL -->
+<div class="modal fade" id="URLModal" tabindex="-1" aria-labelledby="URLModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="URLModalLabel"><i class="bi bi-file-zip"></i>&nbsp;&nbsp;LZ-Codierung</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            <div class="row">
+                <div class="wrap" id="URLDiv"></div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Schließen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal-Info -->
+<div class="modal fade" id="InfoModal" tabindex="-1" aria-labelledby="InfoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="InfoModalLabel"><i class="bi bi-info-circle"></i>&nbsp;&nbsp;Über HTML-Blockly-Editor</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Der <strong>HTML-Blockly-Editor</strong> ermöglicht die Programmierung von Webseiten mit Blöcken und ist ein unterrichtsbegleitendes Projekt für den Informatik-Unterricht am Gymnasium Westerstede <a href="https://www.informatik.gym-wst.de" class="link-secondary" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a>.</p>
+        <p><strong>Autor:</strong> Matthias Perenthaler<br><strong>Version:</strong> V1.01.00<br><strong>Lizenz:</strong> MIT License <a href="https://de.wikipedia.org/wiki/MIT-Lizenz" class="link-secondary" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a>
+        <hr>
+        <ul class="list-group">
+            <li class="list-group-item active">Verwendete Bibliotheken</li>
+            <li class="list-group-item">HTML-Block-Definitionen&nbsp;&nbsp;<a href="https://github.com/bwinf/blockly-html" class="link-secondary" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a> - Lizenz: <a href="https://github.com/bwinf/blockly-html/blob/master/LICENSE" class="link-secondary" target="_blank">GNU General Public License v3.0</a></li>
+            <li class="list-group-item">Blockly&nbsp;&nbsp;<a href="https://github.com/google/blockly" class="link-secondary" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a> - Lizenz: <a href="https://github.com/google/blockly/blob/master/LICENSE" class="link-secondary" target="_blank">Apache License 2.0</a></li>
+            <li class="list-group-item">Bootstrap&nbsp;&nbsp;<a href="https://getbootstrap.com/" class="link-secondary" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a> - Lizenz: <a href="https://github.com/twbs/bootstrap/blob/main/LICENSE" class="link-secondary" target="_blank">MIT License</a></li>
+            <li class="list-group-item">JQuery&nbsp;&nbsp;<a href="https://jquery.com/" class="link-secondary" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a> - Lizenz: <a href="https://jquery.org/license/" class="link-secondary" target="_blank">MIT License</a></li>  
+            <li class="list-group-item">Prism&nbsp;&nbsp;<a href="https://prismjs.com/" class="link-secondary" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a> - Lizenz: <a href="https://github.com/PrismJS/prism/blob/master/LICENSE" class="link-secondary" target="_blank">MIT License</a></li> 
+            <li class="list-group-item">LZ_String&nbsp;&nbsp;<a href="https://github.com/pieroxy/lz-string/" class="link-secondary" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a> - Lizenz: <a href="https://github.com/pieroxy/lz-string/blob/master/LICENSE" class="link-secondary" target="_blank">MIT License</a></li>
+            <li class="list-group-item">Split&nbsp;&nbsp;<a href="https://github.com/nathancahill/split" class="link-secondary" target="_blank"><i class="bi bi-box-arrow-up-right"></i></a> - Lizenz: <a href="https://github.com/nathancahill/split/blob/master/LICENSE" class="link-secondary" target="_blank">MIT License</a></li>             
+        </ul>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Schließen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal-TML -->
+<div class="modal fade" id="HTMLModal" tabindex="-1" aria-labelledby="HTMLModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="HTMLModalLabel"><i class="bi bi-code-square"></i>&nbsp;&nbsp;HTML-Quellcode</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+            <div class="row">
+              <pre><code id="HTMLQuellCode"></code></pre>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Schließen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Startblöcke beim Laden -->
+<xml id="startBlocks" style="display: none">
+  <block type="html" id="2J/,?B{w6UqtEUxLCkKr" x="90" y="50"><statement name="content"><block type="head" id="MPpjrRZ{~(5+gH{%1r#7"><statement name="content"><block type="title" id="1]2.Ir4{LBIOq:knep!Q"><field name="NAME">Webseite</field><next><block type="css_classes" id="odyDBBmlcxNPwBl]r_^U"><statement name="content"><block type="css_tag" id="u,z[5+a;3w^YH{%GUb?*"><field name="NAME">body</field><statement name="content"><block type="css_attribut" id="_u,mSZSuBcgR4cxLP[;}"><field name="property">font-family</field><field name="value">sans-serif</field><next><block type="css_attribut" id="Dj^)nKJW;(`Ug.)oUrVh"><field name="property">background-color</field><field name="value">#1e252d</field><next><block type="css_attribut" id="[$4gD,3yko3`nk=vhX#?"><field name="property">color</field><field name="value">#8292a1</field><next><block type="css_attribut" id="hz=Ar)?c[2Q5+IR@aD|b"><field name="property">padding</field><field name="value">10px</field></block></next></block></next></block></next></block></statement><next><block type="css_class" id="Fnw=:JfYOGx}?au@*[%$"><field name="NAME">links</field><statement name="content"><block type="css_attribut" id="z*$J2m_466lr:tor3SDC"><field name="property">display</field><field name="value">inline-block</field></block></statement><next><block type="css_class" id="m7#!0WmFg06#h:-B=0Vt"><field name="NAME">rechts</field><statement name="content"><block type="css_attribut" id="7Mz}{5{_Ila;IU;-Zm}2"><field name="property">float</field><field name="value">right</field></block></statement><next><block type="css_class" id="k@)t)2XOBqY4O8fxy,6`"><field name="NAME">halloWelt</field><statement name="content"><block type="css_attribut" id="I|:(o)s%_t~~@U(!C67G"><field name="property">padding-top</field><field name="value">100px</field><next><block type="css_attribut" id="nN1Yg0tS-i2NDW3ti^Ds"><field name="property">text-align</field><field name="value">center</field><next><block type="css_attribut" id="5yN3o?S_kT$ch6=sg!}`"><field name="property">font-size</field><field name="value">6em</field></block></next></block></next></block></statement><next><block type="css_tag" id="E3%_(VBSal:JUbgSt^)r"><field name="NAME">hr</field><statement name="content"><block type="css_attribut" id="?wR7WbX[4Gq!d:Nk$e8w"><field name="property">border</field><field name="value">3px solid #8292a1</field><next><block type="css_attribut" id="NQ(*`Wj`Zgt#8qJCoO0d"><field name="property">border-radius</field><field name="value">3px</field></block></next></block></statement></block></next></block></next></block></next></block></next></block></statement></block></next></block></statement><next><block type="body" id="v)bKudnvOoxpfcp3#Ela"><statement name="content"><block type="division" id="R+#k{=8j?)F?qbjEfA[R"><value name="NAME"><block type="css_classdock" id=",Dyl@*2!i.%Awf,Wgb{2"><field name="NAME">links</field></block></value><statement name="content"><block type="plaintext" id="B9;UxYy*|vO)FvDflBo%"><field name="content">Html-Kurs ...</field></block></statement><next><block type="division" id="Bycl);$gYn0k8aGc$xzS"><value name="NAME"><block type="css_classdock" id="fSz/N_G$Ih!a4iy#4794"><field name="NAME">rechts</field></block></value><statement name="content"><block type="plaintext" id="}sA[(5v4S;J3y4hs4OjZ"><field name="content">... für Klasse 10</field></block></statement><next><block type="division" id="$rJ^v7iEWpQ%4|{G7_48"><value name="NAME"><block type="css_classdock" id="eW@s?!q`BQFACb`Mi%8("><field name="NAME">halloWelt</field></block></value><statement name="content"><block type="plaintext" id="Ik7gW#jEwtWsKo*gp]M?"><field name="content">Hallo Welt!</field></block></statement><next><block type="horizontalbreak" id="@UTlx4?xk7)=;8TfdB7d"></block></next></block></next></block></next></block></statement></block></next></block></statement></block>  
+</xml>
+
+<xml id="toolbox" style="display: none">
+    <category name="Seitenstruktur" colour="#34495E">
+      <block type="html">
+        <statement name="content">
+          <block type="head">
+            <statement name="content">
+              <block type="title">
+                <field name="NAME"></field>
+              </block>
+            </statement>
+            <next>
+              <block type="body"></block>
+            </next>
+          </block>
+        </statement>
+      </block>
+      <block type="html"></block>
+      <block type="body"></block>
+      <block type="head"></block>
+      <block type="title">
+            <field name="NAME"></field>
+      </block>
+    </category>
+    <category name="Gestaltung" colour="#A93226">
+      <block type="css_classes"></block>
+      <block type="css_class">
+        <field name="NAME">Klassenname</field>
+      </block>
+      <block type="css_tag">
+        <field name="NAME">tag-Name</field>
+      </block>      
+      <block type="css_classdock">
+        <field name="NAME">Klassenname</field>
+      </block>      
+      <block type="css_color">
+        <field name="NAME">#ffff00</field>
+      </block>
+      <block type="css_bgcolour">
+        <field name="NAME">#ffff00</field>
+      </block>      
+      <block type="css_attribut">
+        <field name="property">Attribut</field>
+        <field name="value">Wert</field>
+      </block>
+      <block type="style"></block>
+      <block type="span"></block>
+      <block type="division"></block>           
+    </category>    
+    <category name="Textelemente" colour="#138D75">
+      <block type="plaintext">
+        <field name="content"></field>
+      </block>
+      <block type="horizontalbreak"></block>
+      <block type="linebreak"></block>
+      <block type="paragraph"></block>
+      <block type="headline">
+        <field name="NAME">h1</field>
+      </block>
+      <block type="link">
+        <field name="NAME">Ziel</field>
+      </block>
+      <block type="image">
+        <field name="IMAGE">URL</field>
+        <field name="ALT">alternativer Text</field>
+      </block>
+      <block type="generictag">
+        <field name="NAME">tag</field>
+      </block>        
+    </category>
+    <category name="Textstil" colour="#F39C12">
+      <block type="emphasise"></block>
+      <block type="strong"></block>
+      <block type="deleted"></block>
+      <block type="super"></block>
+      <block type="sub"></block>
+      <block type="code"></block>
+    </category>
+    <category name="Liste" colour="#2980B9">
+      <block type="unorderedlist"></block>
+      <block type="orderedlist"></block>
+      <block type="listelement"></block>
+    </category>
+    <category name="Tabelle" colour="#839192">
+      <block type="table">
+        <statement name="content">
+          <block type="tablerow">
+            <statement name="content">
+              <block type="tablecell">
+                <next>
+                  <block type="tablecell"></block>
+                </next>
+              </block>
+            </statement>
+            <next>
+              <block type="tablerow">
+                <statement name="content">
+                  <block type="tablecell">
+                    <next>
+                      <block type="tablecell"></block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+      <block type="table"></block>
+      <block type="tablerow"></block>
+      <block type="tablecell"></block>
+    </category>
+    <category name="Formular" colour="#884EA0">
+      <block type="form"></block>
+      <block type="input_text">
+        <field name="default"></field>
+      </block>
+      <block type="button"></block>
+      <block type="input">
+        <field name="type">text</field>
+        <field name="value"></field>
+      </block>
+    </category>
+  </xml>
+
+</body>
+</html>
