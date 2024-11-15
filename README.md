@@ -20,7 +20,7 @@ Die verwendeten Bibliotheken sind statisch in das Projekt eingebunden und werden
 
 ### Verwendete Bibliotheken: 
 
-- [HTML-Block-Definitionen](https://github.com/bwinf/blockly-html) - [https://github.com/bwinf/blockly-html/blob/master/LICENSE](https://github.com/bwinf/blockly-html/blob/master/LICENSE)
+- [HTML-Block-Definitionen](https://github.com/bwinf/blockly-html) - [GNU General Public License](https://github.com/bwinf/blockly-html/blob/master/LICENSE)
 - [Blockly](https://github.com/google/blockly) - [Apache License](https://github.com/google/blockly/blob/master/LICENSE)
 - [Bootstrap](https://getbootstrap.com/) - [MIT License](https://github.com/twbs/bootstrap/blob/main/LICENSE)
 - [JQuery](https://jquery.com/) - [MIT License](https://jquery.org/license/)
