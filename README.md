@@ -1,6 +1,6 @@
 ## Projektbeschreibung
 
-Der **HTML-Blockly-Editor wird für den Einsatz im [Informatik-Unterricht](https://www.informatik.gym-wst.de) am [Gymnasium Westerstede](https://www.gymnasium-westerstede.de) entwickelt.
+Der **HTML-Blockly-Editor** wird für den Einsatz im [Informatik-Unterricht](https://www.informatik.gym-wst.de) am [Gymnasium Westerstede](https://www.gymnasium-westerstede.de) entwickelt.
 
 Für Programmier-AnfängerInnen ist die Programmierung im Text-Modus schwierig. Im Unterricht wird für die Suche nach Tippfehlern oder Syntaxfehlern viel Zeit verwendet und man verliert in der Vielfalt verfügbarer Anweisungen leicht die Orientierung. Bei einem **Block-Editor** spielen Tippfehler keine Rolle und mögliche Anweisungen findet man nach Kategorien angeordnet in der Toolbox. In den vergangenen Jahren wurden viele Block-Programmierumgebungen entwickelt, wie z.B. [Scratch](https://scratch.mit.edu/) oder [Open Roberta](https://lab.open-roberta.org/).
 
