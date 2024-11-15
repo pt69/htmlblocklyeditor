@@ -6,7 +6,7 @@ Für Programmier-AnfängerInnen ist die Programmierung im Text-Modus schwierig. 
 
 Mit dem HTML-Blockly-Editor kann eine Webseite mit Blöcken zusammengestellt werden. Für die Webseite gibt es eine Vorschau und der dafür notwendige HTML-Code kann in einem Editor angezeigt werden.
 
-[HTML-Blockly-Editor](img/htmlblocklyeditor.png)
+![HTML-Blockly-Editor](htmlblocklyeditor.png)
 
 ---
 
