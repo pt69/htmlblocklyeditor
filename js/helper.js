@@ -4,7 +4,7 @@ document.getElementById('HTMLsaveDateiname').value = 'BlocklyCode';
 
 document.getElementById('HTMLSave').onclick = function() {
   try {
-    let xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+    let xml = Blockly.Xml.workspaceToDom(workspace);
     var xml_text = Blockly.Xml.domToText(xml);
     let link = document.createElement('a');
     link.download = document.getElementById('HTMLsaveDateiname').value + '.xml';
@@ -18,7 +18,8 @@ document.getElementById('HTMLSave').onclick = function() {
 
 document.getElementById('URLSave').onclick = function() {
   try {
-    let xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+    //neu
+    let xml = Blockly.Xml.workspaceToDom(workspace);
     var xml_text = Blockly.Xml.domToText(xml);
     let compressed = LZString.compressToEncodedURIComponent(xml_text);
     let URL_text = "#LZ=" + compressed;
@@ -34,9 +35,12 @@ fileSelector.addEventListener('change', (event) => {
   let reader = new FileReader();
   reader.readAsText(file);
   reader.onload = function (event) {
-    Blockly.mainWorkspace.clear();
-    var xml = Blockly.Xml.textToDom(event.target.result);
-    Blockly.Xml.domToWorkspace(xml, Blockly.mainWorkspace);   
+    workspace.clear();
+    //alt
+    //var xml = Blockly.Xml.textToDom(event.target.result);
+    //neu 
+    var xml = Blockly.utils.xml.textToDom(event.target.result);
+    Blockly.Xml.domToWorkspace(xml, workspace);   
     document.getElementById('HTMLDateiwahl').value = null; 
   };  
 });

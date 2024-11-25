@@ -106,11 +106,11 @@ function analyzeURL() {
       try {
           let triggerCode = urlString.substring(0, 4);
           if (triggerCode == "#LZ=") {
-            Blockly.mainWorkspace.clear();
+            workspace.clear();
             let comressedCode = urlString.substring(4);
             let string = LZString.decompressFromEncodedURIComponent(comressedCode);
-            let xml = Blockly.Xml.textToDom(string);
-            Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);              
+            let xml = Blockly.utils.xml.textToDom(string);
+            Blockly.Xml.domToWorkspace(xml, workspace);              
           }
       }
       catch {

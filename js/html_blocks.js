@@ -17,7 +17,11 @@ let cssC1 = "#A93226";
 let cssC2 = "#C0392B";
 let cssC3 = "#CD6155";
 
-var htmlBlocks =
+//Plugins müssen registriert werden
+registerFieldColour();
+
+//neuer Aufruf der Block-Definitionen
+var htmlBlocks = Blockly.common.createBlockDefinitionsFromJsonArray(
 [{
   "type": "css_classes",
   "message0": "CSS-Klassen %1 %2",
@@ -935,8 +939,11 @@ var htmlBlocks =
   "colour": 230,
   "tooltip": "",
   "helpUrl": ""
-}];
+}]);
 
+Blockly.common.defineBlocks(htmlBlocks);
+
+/*
 for (var iBlock in htmlBlocks) {
   function makeBlock(json) {
     Blockly.Blocks[json.type] = {
@@ -947,3 +954,4 @@ for (var iBlock in htmlBlocks) {
   }
   makeBlock(htmlBlocks[iBlock]);
 }
+*/
